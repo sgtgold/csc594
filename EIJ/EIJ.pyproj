@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>48e79467-ee03-4014-a15e-8a466fd5a958</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Main.py</StartupFile>
+    <StartupFile>EIJ.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,8 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Facts.py" />
-    <Compile Include="Main.py">
+    <Compile Include="EIJ.py" />
+    <Compile Include="Data.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
