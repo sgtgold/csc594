@@ -62,3 +62,5 @@ EIJ/facts.json
 *.gdoc
 /vs_community__344795672.1543372157.exe
 /EIJ/.vs/EIJ
+*.pyc
+EIJ/__pycache__/Data.cpython-37.pyc

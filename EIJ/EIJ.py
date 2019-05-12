@@ -22,7 +22,7 @@ class EvaluateStories(KnowledgeEngine):
           NOT(Fact(Stories=W())))
     def loadStories(self):      
         rawFacts = Data.loadFacts()
-        for p in rawFacts:
+        for p in rawFacts['stories']:
             #engine.declare(Story(who=p['who'],what=p['what'],where=p['where'],why=p['why'],when=p['when']))
             emoList = Data.loadEmotionWordList()        
             for e in emoList.keys():

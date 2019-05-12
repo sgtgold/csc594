@@ -1,695 +1,774 @@
 {"emotions":
 [
-{"name":"Confusion and Helplessness"
-,"words":[
-"doubtful"
-,"uncertain"
-,"indecisive"
-,"perplexed"
-,"embarrassed"
-,"hesitant"
-,"disillusioned"
-,"distrustful"
-,"misgiving"
-,"unsure"
-,"tense"
-,"stressed"
-,"uncomfortable"
-,"dishonest"
-,"disdainful"
-,"manipulative"
-,"judgmental"
-,"argumentative"
-,"authoritative"
-,"condescending"
-,"distracted"
-,"disoriented"
-,"off-kilter"
-,"frenzied"
-,"blushing"
-,"awkward"
-,"incapable"
-,"paralyzed"
-,"fatigued"
-,"inferior"
-,"vulnerable"
-,"distressed"
-,"pathetic"
-,"distraught"
-,"doomed"
-,"overwhelmed"
-,"incompetent"
-,"incapacitated"
-,"trapped"
-,"squirming"
-,"jittery"
-,"woozy"
-,"twitching"
-,"compulsive"
-,"uncaring"
-,"uninterested"
-,"unresponsive"
-,"terrified"
-,"suspicious"
-,"anxious"
-,"alarmed"
-,"panicked"
-,"threatened"
-,"cowardly"
-,"insecure"
-,"Deceived "
-,"Helplessness"
-,"Disempowered"
-,"upset"
-,"doubtful"
-,"shy"
-,"stupefied"
-,"unbelieving"
-,"skeptical"
-,"lost"
-,"uneasy"
-,"pessimistic"
-]}
-,{"name":"Agitated"
-,"words":[
-"Magical"
-,"Instantly"
-,"Missing Out"
-,"Left behind"
-,"Magnificent"
-,"Miracle"
-,"Most Important"
-,"Profitable"
-,"Proven"
-,"Quick"
-,"Remarkable"
-,"Results"
-,"Revolutionary"
-,"Safe"
-,"Save"
-,"Sensational"
-,"Should"
-,"Startling"
-,"Strongly agree/ recommend"
-,"Strongly suggest"
-,"Superb"
-,"Superior"
-,"Tremendous"
-,"Truly"
-,"Trustworthy"
-,"Urge"
-,"Worthwhile"
-,"Deadline"
-,"Limited"
-,"Seize"
-,"bargain"
-,"Discount"
-,"Explode"
-,"Extra"
-,"Fortune"
-,"Freebie"
-,"Jackpot"
-,"Reduced"
-,"Instant Savings"
-,"Skyrocket"
-,"Immediately"
-,"Imminently "
-]}
-,{"name":"Curiosity / Aroused"
-,"words":["Secret"
-,"Confidential"
-,"Controversial"
-,"Underground"
-,"What no one tells you"
-,"Have you heard"
-,"Cover-up"
-,"Forbidden"
-,"Banned"
-,"Behind the Scenes"
-,"Secret agenda"
-,"Secret plot"
-,"Insider"
-,"Off-the record"
-,"Blacklisted"
-,"Censored"
-,"Concealed"
-,"Confessions"
-,"Unbelievable"
-,"Covert"
-,"No one talks about"
-,"Hidden"
-,"underground"
-,"Insider’s Scoop"
-,"Intel"
-]}
-,{"name":"ANGER"
-,"words":["Ordeal"
-,"Outrageousness"
-,"Provoke"
-,"Repulsive"
-,"Scandal"
-,"Severe"
-,"Shameful"
-,"Shocking"
-,"Terrible"
-,"Tragic"
-,"Unreliable"
-,"Unstable"
-,"Wicked"
-,"Aggravate"
-,"Agony"
-,"Appalled"
-,"Atrocious"
-,"Corrupting"
-,"Damaging"
-,"Deplorable"
-,"Disadvantages"
-,"Disastrous"
-,"Disgusted"
-,"Dreadful"
-,"Eliminate"
-,"Harmful"
-,"Harsh"
-,"Inconsiderate"
-,"enraged"
-,"offensive"
-,"aggressive"
-,"frustrated"
-,"controlling"
-,"resentful"
-,"malicious"
-,"infuriated"
-,"critical"
-,"violent"
-,"vindictive"
-,"sadistic"
-,"spiteful"
-,"furious"
-,"agitated"
-,"antagonistic"
-,"repulsed"
-,"quarrelsome"
-,"venomous"
-,"rebellious"
-,"exasperated"
-,"impatient"
-,"contrary"
-,"condemning"
-,"seething"
-,"scornful"
-,"sarcastic"
-,"poisonous"
-,"jealous"
-,"ticked off"
-,"revengeful"
-,"retaliating"
-,"reprimanding"
-,"powerless"
-,"despicable"
-,"self-hating"
-,"desperate"
-,"alienated"
-,"pessimistic"
-,"dejected"
-,"vilified"
-,"unjustified"
-,"violated"
-,"irritated"
-,"hostile"
-,"insulting"
-,"sore"
-,"annoyed"
-,"upset"
-,"hateful"
-,"unpleasant"
-,"bitter"
-,"inflamed"
-,"provoked"
-,"incensed"
-,"cross"
-,"worked up"
-,"boiling"
-,"filming"
-,"indignant"
-]}
-,{"name":"SAFE / SATISFIED"
-,"words":["Accurate"
-,"instantly"
-,"Advantage"
-,"Always"
-,"A cut above"
-,"Bargain"
-,"Certain"
-,"Certainly"
-,"Confident"
-,"Convenient"
-,"Definitely"
-,"Delighted"
-,"Easy"
-,"Ecstatic"
-,"Effective"
-,"Emphasize"
-,"Extremely"
-,"Freedom"
-,"Guaranteed"
-,"Highly effective/ likely"
-,"Introducing"
-,"First ever"
-,"Investment"
-,"conscientious"
-,"approving"
-,"honored"
-,"privileged"
-,"adaptable"
-,"relaxed"
-,"Astonishing"
-,"Astounded"
-,"assured"
-,"fulfilled"
-,"genuine"
-,"authentic"
-,"self-sufficient"
-,"reliable"
-,"sure"
-,"secure"
-,"stable"
-,"honest"
-,"truthful"
-,"supportive"
-,"excellent"
-,"responsible"
-,"solid"
-,"trusting"
-,"supported"
-,"Absolutely"
-,"Bargain"
-,"clarity"
-,"transparency"
-,"humility"
-]}
-,{"name":"JOY"
-,"words":[
-"blissful"
-,"joyous"
-,"delighted"
-,"overjoyed"
-,"gleeful"
-,"thankful"
-,"festive"
-,"ecstatic"
-,"satisfied"
-,"cheerful"
-,"sunny"
-,"elated"
-,"jubilant"
-,"jovial"
-,"fun-loving"
-,"lighthearted"
-,"glorious"
-,"innocent"
-,"child-like"
-,"gratified"
-,"euphoric"
-,"on top of the"
-,"world"
-,"playful"
-,"courageous"
-,"energetic"
-,"liberated"
-,"optimistic"
-,"frisky"
-,"animated"
-,"spirited"
-,"thrilled"
-,"wonderful"
-,"funny"
-,"intelligent"
-,"exhilarated"
-,"spunky"
-,"youthful"
-,"vigorous"
-,"tickled"
-,"creative"
-,"constructive"
-,"helpful"
-,"resourceful"
-,"at ease"
-,"comfortable"
-,"pleased"
-,"encouraged"
-,"surprised"
-,"content"
-,"serene"
-,"bright"
-,"blessed"
-,"Vibrant"
-,"Bountiful"
-,"Glowing"
-]}
-,{"name":"INSPIRED"
-,"words":[
-"motivated"
-,"eager"
-,"keen"
-,"earnest"
-,"inspired"
-,"enthusiastic"
-,"bold"
-,"brave"
-,"daring"
-,"hopeful"
-,"upbeat"
-,"assured"
-,"clear"
-,"balanced"
-,"fine"
-,"okay"
-,"grateful"
-,"carefree"
-,"adequate"
-,"fulfilled"
-,"genuine"
-,"authentic"
-,"forgiving"
-,"sincere"
-,"uplifted"
-,"unburdened"
-,"confident"
-,"self-sufficient"
-,"reliable"
-,"sure"
-,"unique"
-,"dynamic"
-,"tenacious"
-,"cooperative"
-,"productive"
-,"exuberant"
-,"in the zone"
-,"responsive"
-,"conscientious"
-,"approving"
-,"honored"
-,"privileged"
-,"adaptable"
-,"Empowered"
-,"Focused"
-,"Capable"
-,"Wondrous"
-,"Marvelous"
-,"Fantastic"
-,"Humongous"
-,"Fantabulous"
-]}
-,{"name":"RELAXED and PEACEFUL"
-,"words":[
-"calm"
-,"at ease"
-,"comfortable"
-,"content"
-,"quiet"
-,"certain"
-,"relaxed"
-,"serene"
-,"bright"
-,"blessed"
-,"balanced"
-,"grateful"
-,"carefree"
-,"fulfilled"
-,"genuine"
-,"authentic"
-,"forgiving"
-,"sincere"
-,"uplifted"
-,"unburdened"
-,"confident"
-,"self-sufficient"
-,"glowing"
-,"radiant"
-,"beaming"
-,"reflective"
-,"smiling"
-,"grounded"
-,"unhurried"
-,"open-minded"
-,"efficient"
-,"non-controlling"
-,"unassuming"
-,"trusting"
-,"supported"
-,"fluid"
-,"light"
-,"spontaneous"
-,"aware"
-,"healthy"
-,"meditative"
-,"still"
-,"rested"
-,"waiting"
-,"laughing"
-,"graceful"
-,"natural"
-,"steady"
-,"centered"
-,"placid"
-,"Clear"
-,"Stoic"
-,"Aligned"
-]}
-,{"name":"LOVE"
-,"words":["loving"
-,"considerate"
-,"affectionate"
-,"sensitive"
-,"tender"
-,"devoted"
-,"attracted"
-,"passionate"
-,"admiration"
-,"warm"
-,"touched"
-,"sympathy"
-,"close"
-,"loved"
-,"comforted"
-,"drawn toward"]
-}
-,{"name":"OPEN"
-,"words":[
-"understanding"
-,"confident"
-,"reliable"
-,"easy"
-,"amazed"
-,"free"
-,"sympathetic"
-,"interested"
-,"satisfied"
-,"receptive"
-,"accepting"
-,"kind"
-]}
-,{"name":"HAPPY",
-"words":[
-"great"
-,"gay"
-,"joyous"
-,"lucky"
-,"fortunate"
-,"delighted"
-,"overjoyed"
-,"gleeful"
-,"thankful"
-,"important"
-,"festive"
-,"ecstatic"
-,"satisfied"
-,"glad"
-,"cheerful"
-,"sunny"
-,"merry"
-,"elated"
-,"jubilant"]}
-,{"name":"ALIVE",
-"words":["playful"
-,"courageous"
-,"energetic"
-,"liberated"
-,"optimistic"
-,"provocative"
-,"impulsive"
-,"free"
-,"animated"
-,"spirited"
-,"thrilled"
-,"wonderful"]
-}
-,{"name":"GOOD"
-,"words":["calm"
-,"peaceful"
-,"at ease"
-,"comfortable"
-,"pleased"
-,"encouraged"
-,"clever"
-,"surprised"
-,"content"
-,"quiet"
-,"certain"
-,"relaxed"
-,"serene"
-,"free and easy"
-,"bright"
-,"blessed"
-,"reassured"]}
-,{"name":"INTERESTED"
-,"words":["concerned"
-,"affected"
-,"fascinated"
-,"intrigued"
-,"absorbed"
-,"inquisitive"
-,"nosy"
-,"snoopy"
-,"engrossed"
-,"curious"]
-}
-,{"name":"POSITIVE"
-,"words":["eager"
-,"keen"
-,"earnest"
-,"intent"
-,"anxious"
-,"inspired"
-,"determined"
-,"excited"
-,"enthusiastic"
-,"bold"
-,"brave"
-,"daring"
-,"challenged"
-,"optimistic"
-,"re-enforced"
-,"confident"
-,"hopeful"]}
-,{"name":"STRONG"
-,"words":["impulsive"
-,"free"
-,"sure"
-,"certain"
-,"rebellious"
-,"unique"
-,"dynamic"
-,"tenacious"
-,"hardy"
-,"secure"]}
-,{"name":"DEPRESSED"
-,"words":["lousy"
-,"disappointed"
-,"discouraged"
-,"ashamed"
-,"powerless"
-,"diminished"
-,"guilt?"
-,"dissatisfied"
-,"miserable"
-,"detestable"
-,"repugnant"
-,"despicable"
-,"disgusting"
-,"ab ominable"
-,"terrible"
-,"in despair"
-,"sulky"
-,"bad"
-,"a sense of loss"
-]}
-,{"name":"HELPLESS"
-,"words":["incapable"
-,"alor.e"
-,"paraljtzed"
-,"fatigued"
-,"useless"
-,"inferior"
-,"vulnerable"
-,"empty"
-,"forced"
-,"hesitant"
-,"despair"
-,"frustrated"
-,"distressed"
-,"woeful"
-,"pathetic"
-,"tragic"
-,"in a stew"
-,"dominated"
-]}
-,{"name":"AFRAID"
-,"words":["fearful"
-,"terrified"
-,"suspicious"
-,"anxious"
-,"alarmed"
-,"panic"
-,"nervous"
-,"scared"
-,"worried"
-,"frightened"
-,"timid"
-,"shaky"
-,"restless"
-,"doubtful"
-,"threatened"
-,"cowardly"
-,"quaking"
-,"menaced"
-]}
-,{"name":"HURT"
-,"words":["crushed"
-,"tormented"
-,"deprived"
-,"pained"
-,"tortured"
-,"dejected"
-,"rejected"
-,"injured"
-,"offended"
-,"afflicted"
-,"aching"
-,"victimized"
-,"heartbroken"
-,"agonized"
-,"appalled"
-,"humiliated"
-,"wronged"
-,"alienated"
-]}
-,{"name":"SAD"
-,"words":[
-"tearful"
-,"sorrowful"
-,"pained"
-,"grief"
-,"anguish"
-,"desolate"
-,"desperate"
-,"pessimistic"
-,"unhappy"
-,"lonely"
-,"grieved"
-,"mournful"
-,"dismayed"
-,"INDIFFERENT"
-,"insensitive"
-,"dull"
-,"nonchalant"
-,"neutral"
-,"reserved"
-,"weary"
-,"bored"
-,"preoccupied"
-,"cold"
-,"disinterested"
-,"lifeless"
-]}
+  {
+    "name": "Confusion and Helplessness",
+    "words": [
+      "doubtful",
+      "uncertain",
+      "indecisive",
+      "perplexed",
+      "embarrassed",
+      "hesitant",
+      "disillusioned",
+      "distrustful",
+      "misgiving",
+      "unsure",
+      "tense",
+      "stressed",
+      "uncomfortable",
+      "dishonest",
+      "disdainful",
+      "manipulative",
+      "judgmental",
+      "argumentative",
+      "authoritative",
+      "condescending",
+      "distracted",
+      "disoriented",
+      "off-kilter",
+      "frenzied",
+      "blushing",
+      "awkward",
+      "incapable",
+      "paralyzed",
+      "fatigued",
+      "inferior",
+      "vulnerable",
+      "distressed",
+      "pathetic",
+      "distraught",
+      "doomed",
+      "overwhelmed",
+      "incompetent",
+      "incapacitated",
+      "trapped",
+      "squirming",
+      "jittery",
+      "woozy",
+      "twitching",
+      "compulsive",
+      "uncaring",
+      "uninterested",
+      "unresponsive",
+      "terrified",
+      "suspicious",
+      "anxious",
+      "alarmed",
+      "panicked",
+      "threatened",
+      "cowardly",
+      "insecure",
+      "Deceived ",
+      "Helplessness",
+      "Disempowered",
+      "upset",
+      "doubtful",
+      "shy",
+      "stupefied",
+      "unbelieving",
+      "skeptical",
+      "lost",
+      "uneasy",
+      "pessimistic"
+    ]
+    ,"score":  -1
+  },
+  {
+    "name": "Agitated",
+    "words": [
+      "Magical",
+      "Instantly",
+      "Missing Out",
+      "Left behind",
+      "Magnificent",
+      "Miracle",
+      "Most Important",
+      "Profitable",
+      "Proven",
+      "Quick",
+      "Remarkable",
+      "Results",
+      "Revolutionary",
+      "Safe",
+      "Save",
+      "Sensational",
+      "Should",
+      "Startling",
+      "Strongly agree/ recommend",
+      "Strongly suggest",
+      "Superb",
+      "Superior",
+      "Tremendous",
+      "Truly",
+      "Trustworthy",
+      "Urge",
+      "Worthwhile",
+      "Deadline",
+      "Limited",
+      "Seize",
+      "bargain",
+      "Discount",
+      "Explode",
+      "Extra",
+      "Fortune",
+      "Freebie",
+      "Jackpot",
+      "Reduced",
+      "Instant Savings",
+      "Skyrocket",
+      "Immediately",
+      "Imminently "
+    ],"score": -1
+  },
+  {
+    "name": "Curiosity / Aroused",
+    "words": [
+      "Secret",
+      "Confidential",
+      "Controversial",
+      "Underground",
+      "What no one tells you",
+      "Have you heard",
+      "Cover-up",
+      "Forbidden",
+      "Banned",
+      "Behind the Scenes",
+      "Secret agenda",
+      "Secret plot",
+      "Insider",
+      "Off-the record",
+      "Blacklisted",
+      "Censored",
+      "Concealed",
+      "Confessions",
+      "Unbelievable",
+      "Covert",
+      "No one talks about",
+      "Hidden",
+      "underground",
+      "Insider’s Scoop",
+      "Intel"
+    ],"score": 1
+  },
+  {
+    "name": "ANGER",
+    "words": [
+      "Ordeal",
+      "Outrageousness",
+      "Provoke",
+      "Repulsive",
+      "Scandal",
+      "Severe",
+      "Shameful",
+      "Shocking",
+      "Terrible",
+      "Tragic",
+      "Unreliable",
+      "Unstable",
+      "Wicked",
+      "Aggravate",
+      "Agony",
+      "Appalled",
+      "Atrocious",
+      "Corrupting",
+      "Damaging",
+      "Deplorable",
+      "Disadvantages",
+      "Disastrous",
+      "Disgusted",
+      "Dreadful",
+      "Eliminate",
+      "Harmful",
+      "Harsh",
+      "Inconsiderate",
+      "enraged",
+      "offensive",
+      "aggressive",
+      "frustrated",
+      "controlling",
+      "resentful",
+      "malicious",
+      "infuriated",
+      "critical",
+      "violent",
+      "vindictive",
+      "sadistic",
+      "spiteful",
+      "furious",
+      "agitated",
+      "antagonistic",
+      "repulsed",
+      "quarrelsome",
+      "venomous",
+      "rebellious",
+      "exasperated",
+      "impatient",
+      "contrary",
+      "condemning",
+      "seething",
+      "scornful",
+      "sarcastic",
+      "poisonous",
+      "jealous",
+      "ticked off",
+      "revengeful",
+      "retaliating",
+      "reprimanding",
+      "powerless",
+      "despicable",
+      "self-hating",
+      "desperate",
+      "alienated",
+      "pessimistic",
+      "dejected",
+      "vilified",
+      "unjustified",
+      "violated",
+      "irritated",
+      "hostile",
+      "insulting",
+      "sore",
+      "annoyed",
+      "upset",
+      "hateful",
+      "unpleasant",
+      "bitter",
+      "inflamed",
+      "provoked",
+      "incensed",
+      "cross",
+      "worked up",
+      "boiling",
+      "filming",
+      "indignant"
+    ],"score": -1
+  },
+  {
+    "name": "SAFE / SATISFIED",
+    "words": [
+      "Accurate",
+      "instantly",
+      "Advantage",
+      "Always",
+      "A cut above",
+      "Bargain",
+      "Certain",
+      "Certainly",
+      "Confident",
+      "Convenient",
+      "Definitely",
+      "Delighted",
+      "Easy",
+      "Ecstatic",
+      "Effective",
+      "Emphasize",
+      "Extremely",
+      "Freedom",
+      "Guaranteed",
+      "Highly effective/ likely",
+      "Introducing",
+      "First ever",
+      "Investment",
+      "conscientious",
+      "approving",
+      "honored",
+      "privileged",
+      "adaptable",
+      "relaxed",
+      "Astonishing",
+      "Astounded",
+      "assured",
+      "fulfilled",
+      "genuine",
+      "authentic",
+      "self-sufficient",
+      "reliable",
+      "sure",
+      "secure",
+      "stable",
+      "honest",
+      "truthful",
+      "supportive",
+      "excellent",
+      "responsible",
+      "solid",
+      "trusting",
+      "supported",
+      "Absolutely",
+      "Bargain",
+      "clarity",
+      "transparency",
+      "humility"
+    ]
+    ,"score": 1
+  },
+  {
+    "name": "JOY",
+    "words": [
+      "blissful",
+      "joyous",
+      "delighted",
+      "overjoyed",
+      "gleeful",
+      "thankful",
+      "festive",
+      "ecstatic",
+      "satisfied",
+      "cheerful",
+      "sunny",
+      "elated",
+      "jubilant",
+      "jovial",
+      "fun-loving",
+      "lighthearted",
+      "glorious",
+      "innocent",
+      "child-like",
+      "gratified",
+      "euphoric",
+      "on top of the",
+      "world",
+      "playful",
+      "courageous",
+      "energetic",
+      "liberated",
+      "optimistic",
+      "frisky",
+      "animated",
+      "spirited",
+      "thrilled",
+      "wonderful",
+      "funny",
+      "intelligent",
+      "exhilarated",
+      "spunky",
+      "youthful",
+      "vigorous",
+      "tickled",
+      "creative",
+      "constructive",
+      "helpful",
+      "resourceful",
+      "at ease",
+      "comfortable",
+      "pleased",
+      "encouraged",
+      "surprised",
+      "content",
+      "serene",
+      "bright",
+      "blessed",
+      "Vibrant",
+      "Bountiful",
+      "Glowing"
+    ],
+    "score": 1
+  },
+  {
+    "name": "INSPIRED",
+    "words": [
+      "motivated",
+      "eager",
+      "keen",
+      "earnest",
+      "inspired",
+      "enthusiastic",
+      "bold",
+      "brave",
+      "daring",
+      "hopeful",
+      "upbeat",
+      "assured",
+      "clear",
+      "balanced",
+      "fine",
+      "okay",
+      "grateful",
+      "carefree",
+      "adequate",
+      "fulfilled",
+      "genuine",
+      "authentic",
+      "forgiving",
+      "sincere",
+      "uplifted",
+      "unburdened",
+      "confident",
+      "self-sufficient",
+      "reliable",
+      "sure",
+      "unique",
+      "dynamic",
+      "tenacious",
+      "cooperative",
+      "productive",
+      "exuberant",
+      "in the zone",
+      "responsive",
+      "conscientious",
+      "approving",
+      "honored",
+      "privileged",
+      "adaptable",
+      "Empowered",
+      "Focused",
+      "Capable",
+      "Wondrous",
+      "Marvelous",
+      "Fantastic",
+      "Humongous",
+      "Fantabulous"
+    ],
+    "score": 1
+  },
+  {
+    "name": "RELAXED and PEACEFUL",
+    "words": [
+      "calm",
+      "at ease",
+      "comfortable",
+      "content",
+      "quiet",
+      "certain",
+      "relaxed",
+      "serene",
+      "bright",
+      "blessed",
+      "balanced",
+      "grateful",
+      "carefree",
+      "fulfilled",
+      "genuine",
+      "authentic",
+      "forgiving",
+      "sincere",
+      "uplifted",
+      "unburdened",
+      "confident",
+      "self-sufficient",
+      "glowing",
+      "radiant",
+      "beaming",
+      "reflective",
+      "smiling",
+      "grounded",
+      "unhurried",
+      "open-minded",
+      "efficient",
+      "non-controlling",
+      "unassuming",
+      "trusting",
+      "supported",
+      "fluid",
+      "light",
+      "spontaneous",
+      "aware",
+      "healthy",
+      "meditative",
+      "still",
+      "rested",
+      "waiting",
+      "laughing",
+      "graceful",
+      "natural",
+      "steady",
+      "centered",
+      "placid",
+      "Clear",
+      "Stoic",
+      "Aligned"
+    ],
+    "score": 1
+  },
+  {
+    "name": "LOVE",
+    "words": [
+      "loving",
+      "considerate",
+      "affectionate",
+      "sensitive",
+      "tender",
+      "devoted",
+      "attracted",
+      "passionate",
+      "admiration",
+      "warm",
+      "touched",
+      "sympathy",
+      "close",
+      "loved",
+      "comforted",
+      "drawn toward"
+    ],
+    "score": 1
+  },
+  {
+    "name": "OPEN",
+    "words": [
+      "understanding",
+      "confident",
+      "reliable",
+      "easy",
+      "amazed",
+      "free",
+      "sympathetic",
+      "interested",
+      "satisfied",
+      "receptive",
+      "accepting",
+      "kind"
+    ],
+    "score": 1
+  },
+  {
+    "name": "HAPPY",
+    "words": [
+      "great",
+      "gay",
+      "joyous",
+      "lucky",
+      "fortunate",
+      "delighted",
+      "overjoyed",
+      "gleeful",
+      "thankful",
+      "important",
+      "festive",
+      "ecstatic",
+      "satisfied",
+      "glad",
+      "cheerful",
+      "sunny",
+      "merry",
+      "elated",
+      "jubilant"
+    ],
+    "score": 1
+  },
+  {
+    "name": "ALIVE",
+    "words": [
+      "playful",
+      "courageous",
+      "energetic",
+      "liberated",
+      "optimistic",
+      "provocative",
+      "impulsive",
+      "free",
+      "animated",
+      "spirited",
+      "thrilled",
+      "wonderful"
+    ],
+    "score": 1
+  },
+  {
+    "name": "GOOD",
+    "words": [
+      "calm",
+      "peaceful",
+      "at ease",
+      "comfortable",
+      "pleased",
+      "encouraged",
+      "clever",
+      "surprised",
+      "content",
+      "quiet",
+      "certain",
+      "relaxed",
+      "serene",
+      "free and easy",
+      "bright",
+      "blessed",
+      "reassured"
+    ],
+    "score" :  1
+  },
+  {
+    "name": "INTERESTED",
+    "words": [
+      "concerned",
+      "affected",
+      "fascinated",
+      "intrigued",
+      "absorbed",
+      "inquisitive",
+      "nosy",
+      "snoopy",
+      "engrossed",
+      "curious"
+    ],
+    "score": 1
+  },
+  {
+    "name": "POSITIVE",
+    "words": [
+      "eager",
+      "keen",
+      "earnest",
+      "intent",
+      "anxious",
+      "inspired",
+      "determined",
+      "excited",
+      "enthusiastic",
+      "bold",
+      "brave",
+      "daring",
+      "challenged",
+      "optimistic",
+      "re-enforced",
+      "confident",
+      "hopeful"
+    ],
+
+    "score": 1
+  },
+  {
+    "name": "STRONG",
+    "words": [
+      "impulsive",
+      "free",
+      "sure",
+      "certain",
+      "rebellious",
+      "unique",
+      "dynamic",
+      "tenacious",
+      "hardy",
+      "secure"
+    ],
+    "score": 1
+  },
+  {
+    "name": "DEPRESSED",
+    "words": [
+      "lousy",
+      "disappointed",
+      "discouraged",
+      "ashamed",
+      "powerless",
+      "diminished",
+      "guilt?",
+      "dissatisfied",
+      "miserable",
+      "detestable",
+      "repugnant",
+      "despicable",
+      "disgusting",
+      "ab ominable",
+      "terrible",
+      "in despair",
+      "sulky",
+      "bad",
+      "a sense of loss"
+    ],
+    "score": -1
+  },
+  {
+    "name": "HELPLESS",
+    "words": [
+      "incapable",
+      "alor.e",
+      "paraljtzed",
+      "fatigued",
+      "useless",
+      "inferior",
+      "vulnerable",
+      "empty",
+      "forced",
+      "hesitant",
+      "despair",
+      "frustrated",
+      "distressed",
+      "woeful",
+      "pathetic",
+      "tragic",
+      "in a stew",
+      "dominated"
+    ],
+    "score": -1
+  },
+  {
+    "name": "AFRAID",
+    "words": [
+      "fearful",
+      "terrified",
+      "suspicious",
+      "anxious",
+      "alarmed",
+      "panic",
+      "nervous",
+      "scared",
+      "worried",
+      "frightened",
+      "timid",
+      "shaky",
+      "restless",
+      "doubtful",
+      "threatened",
+      "cowardly",
+      "quaking",
+      "menaced"
+    ],
+    "score": -1
+
+  },
+  {
+    "name": "HURT",
+    "words": [
+      "crushed",
+      "tormented",
+      "deprived",
+      "pained",
+      "tortured",
+      "dejected",
+      "rejected",
+      "injured",
+      "offended",
+      "afflicted",
+      "aching",
+      "victimized",
+      "heartbroken",
+      "agonized",
+      "appalled",
+      "humiliated",
+      "wronged",
+      "alienated"
+    ],
+    "score": -1
+  },
+  {
+    "name": "SAD",
+    "words": [
+      "tearful",
+      "sorrowful",
+      "pained",
+      "grief",
+      "anguish",
+      "desolate",
+      "desperate",
+      "pessimistic",
+      "unhappy",
+      "lonely",
+      "grieved",
+      "mournful",
+      "dismayed",
+      "INDIFFERENT",
+      "insensitive",
+      "dull",
+      "nonchalant",
+      "neutral",
+      "reserved",
+      "weary",
+      "bored",
+      "preoccupied",
+      "cold",
+      "disinterested",
+      "lifeless"
+    ],
+    "score": -1
+  }
 ]}
