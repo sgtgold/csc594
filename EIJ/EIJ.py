@@ -25,11 +25,13 @@ class EvaluateStories(KnowledgeEngine):
         for p in rawFacts['stories']:
             #engine.declare(Story(who=p['who'],what=p['what'],where=p['where'],why=p['why'],when=p['when']))
             emoList = Data.loadEmotionWordList()        
-            for e in emoList.keys():
-                for w in emoList[e]:
+            for e in emoList:
+                for w in e.words:
                     if w in p['what'].split(' '):
-                        print('Emotion='+e)
-                    #engine.declare(Emotion(name=e,words=w))            
+                        print('Emotion='+e.name)
+             #ToDo: Add Fuzzy lookup to find the agents in the sentence
+             #Bind the emotion score to the agents
+             #Do the math
                     
 engine = EvaluateStories()
 engine.reset()

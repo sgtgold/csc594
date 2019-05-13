@@ -651,7 +651,7 @@
       "ashamed",
       "powerless",
       "diminished",
-      "guilt?",
+      "guilt",
       "dissatisfied",
       "miserable",
       "detestable",
@@ -663,7 +663,8 @@
       "in despair",
       "sulky",
       "bad",
-      "a sense of loss"
+      "a sense of loss",
+	  "death"
     ],
     "score": -1
   },

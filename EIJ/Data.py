@@ -42,6 +42,12 @@ class Story:
         self.date = date
         self.time = time
         self.what = what
+class Emotion:
+    def __init__(self,name,score,words):
+        self.name = name
+        self.score = score
+        self.words = words
+
 
 
 
@@ -73,8 +79,8 @@ def getInput(data):
     
     for t in ts:
         data['stories'].append({
-            'who':t.who,
-            'what':t.what,
+            'who':t.who.lower(),
+            'what':t.what.lower(),
             'time':t.time,
             'date':t.date
         })
@@ -85,9 +91,11 @@ def getInput(data):
 def loadEmotionWordList():
      with open(workingDir+'emotions.json') as json_file:
         data = json.load(json_file)
-        emos = {}
+        emos = []
         for i in range(0,len(data['emotions'])):
-            emos[data['emotions'][i]['name']] = data['emotions'][i]['words']
+            emos.append(Emotion(name = data['emotions'][i]['name'],
+                                score = data['emotions'][i]['score'],
+                                words = [x.lower() for x in data['emotions'][i]['words']]))
         return emos
 #Main
 def loadFacts():
@@ -102,10 +110,6 @@ def loadFacts():
 
 loadingMode = 0
 if(loadingMode == 1):
-    i='' 
-    while i != 'quit':
-        
-        data = loadFacts()
-        i = input('Would you like load data?')
-        if i!= 'quit':
-            getInput(data)
+    data = loadFacts()
+    if i!= 'quit':
+        getInput(data)
