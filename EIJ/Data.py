@@ -1,38 +1,51 @@
-#Comma separated list to parse the input for agents who are present
-    #Emotion Words are assigned to the closest agents, even if not present 
-    #(Not Present = not listed in who variable)
-    #Degrees of separation are implied by position in sentance and assigned thusly
-    #For instance, take the following stories
-    #t0{
-    #who:Bob,Carol
-    #date:5/12/2019
-    #time: 0700
-    #What:Bob went out breakfast with Carol
-    #Score: 0 - No emotion words found} 
-    #t1{
-    #who:Carol,Doctor
-    #date:5/12/2019
-    #time:1200
-    #What:Carol had a Doctor's appointment - use fuzzy lookup to find doctor 
-    #Score: 0 - No emotion words found}
-    #t2{
-    #who:Carol,Doctor,[Mother]
-    #date:5/12/2019
-    #time:1205
-    #What:Carol's Doctor was upset because his mother passes away 
-    #Score: [-1 - for doctor (closest)], [-.5 Carol 1 degree of separation and loss for empathy]}
-    #t3{
-    #who:Carol,Bob,[Doctor],[Mother]
-    #date:5/12/2019
-    #time:1900
-    #What:Bob and Carol have dinner and discuss the Doctor's Mom's Death}
-    #Score: [-.25 for Bob],[-.5 for Carol] (only 2 present)
-    #Note about the score, We only assign emotions to those involved directly in the story block, 
-    #Doctor and Mom will be mentioned but no present notated by brackets to get the degree of separation correct
-    #Simplifying assumption: Emotion words will be assigned to the closet agent 
-    #and relationships will be determined by sentence order
 import json
 import os
+import numpy as np
+#Pulled from https://www.datacamp.com/community/tutorials/fuzzy-string-python
+def levenshtein_ratio_and_distance(s, t, ratio_calc = False):
+    """ levenshtein_ratio_and_distance:
+        Calculates levenshtein distance between two strings.
+        If ratio_calc = True, the function computes the
+        levenshtein distance ratio of similarity between two strings
+        For all i and j, distance[i,j] will contain the Levenshtein
+        distance between the first i characters of s and the
+        first j characters of t
+    """
+    # Initialize matrix of zeros
+    rows = len(s)+1
+    cols = len(t)+1
+    distance = np.zeros((rows,cols),dtype = int)
+
+    # Populate matrix of zeros with the indeces of each character of both strings
+    for i in range(1, rows):
+        for k in range(1,cols):
+            distance[i][0] = i
+            distance[0][k] = k
+
+    # Iterate over the matrix to compute the cost of deletions,insertions and/or substitutions    
+    for col in range(1, cols):
+        for row in range(1, rows):
+            if s[row-1] == t[col-1]:
+                cost = 0 # If the characters are the same in the two strings in a given position [i,j] then the cost is 0
+            else:
+                # In order to align the results with those of the Python Levenshtein package, if we choose to calculate the ratio
+                # the cost of a substitution is 2. If we calculate just distance, then the cost of a substitution is 1.
+                if ratio_calc == True:
+                    cost = 2
+                else:
+                    cost = 1
+            distance[row][col] = min(distance[row-1][col] + 1,      # Cost of deletions
+                                 distance[row][col-1] + 1,          # Cost of insertions
+                                 distance[row-1][col-1] + cost)     # Cost of substitutions
+    if ratio_calc == True:
+        # Computation of the Levenshtein Distance Ratio
+        Ratio = ((len(s)+len(t)) - distance[row][col]) / (len(s)+len(t))
+        return Ratio
+    else:
+        # print(distance) # Uncomment if you want to see the matrix showing how the algorithm computes the cost of deletions,
+        # insertions and/or substitutions
+        # This is the minimum number of edits needed to convert string a to string b
+        return "The strings are {} edits away".format(distance[row][col])
 #Parameters
 #
 workingDir = '.\\'
@@ -53,7 +66,8 @@ class Emotion:
 
 def getInput(data):
     ts = []
-    
+    data = {}
+    data['stories'] = []     
     ts.append(Story(who='Bob,Carol'
     ,time='0700'
     ,date='2019/05/12'
@@ -75,7 +89,7 @@ def getInput(data):
          who='Carol,Bob,[Doctor],[Mother]'
          ,date='5/12/2019'
          ,time='1900'
-         ,what="Bob and Carol have dinner and discuss the Doctor's Mother's Death" ))
+         ,what="Bob and Carol have dinner and discuss the Doctor's Mother's Death. Bob was sad" ))
     
     for t in ts:
         data['stories'].append({
@@ -88,6 +102,7 @@ def getInput(data):
     with open(workingDir+'stories.json', 'w') as outfile:  
         json.dump(data, outfile)
 
+#This file reads json emotions file and loads it into a list of story objects
 def loadEmotionWordList():
      with open(workingDir+'emotions.json') as json_file:
         data = json.load(json_file)
@@ -97,19 +112,20 @@ def loadEmotionWordList():
                                 score = data['emotions'][i]['score'],
                                 words = [x.lower() for x in data['emotions'][i]['words']]))
         return emos
-#Main
-def loadFacts():
-    data = {}
-    data['stories'] = [] 
+
+#This file reads json stories file and loads it into a list of story objects
+def loadStories():
+    stories = []
     with open(workingDir+'stories.json') as json_file:  
         #If JSON has data
         if os.stat(workingDir+'stories.json').st_size > 0:
             data = json.load(json_file)
-            data['stories'] = data['stories']
-    return data
+            for s in data['stories']:
+                stories.append(Story(who=s['who'],date=s['date'],time=s['time'],what=s['what']))
+    return stories
 
 loadingMode = 0
 if(loadingMode == 1):
-    data = loadFacts()
+    data = loadStories()
     if i!= 'quit':
         getInput(data)
