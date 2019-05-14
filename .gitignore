@@ -64,3 +64,4 @@ EIJ/facts.json
 /EIJ/.vs/EIJ
 *.pyc
 EIJ/__pycache__/Data.cpython-37.pyc
+*.pyc
