@@ -60,10 +60,11 @@ class Emotion:
         self.name = name
         self.score = score
         self.words = words
-
-
-
-
+class Agent:
+    def __init__(self,name,friendsList,emotionScore):
+        self.name = name
+        self.friendsList = friendsList
+        self.emotionScore = emotionScore
 def getInput(data):
     ts = []
     data = {}
@@ -115,6 +116,7 @@ def loadEmotionWordList():
 
 #This file reads json stories file and loads it into a list of story objects
 def loadStories():
+    #Define a new list
     stories = []
     with open(workingDir+'stories.json') as json_file:  
         #If JSON has data
@@ -123,9 +125,3 @@ def loadStories():
             for s in data['stories']:
                 stories.append(Story(who=s['who'],date=s['date'],time=s['time'],what=s['what']))
     return stories
-
-loadingMode = 0
-if(loadingMode == 1):
-    data = loadStories()
-    if i!= 'quit':
-        getInput(data)
