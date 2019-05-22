@@ -79,13 +79,15 @@ def evalStories(passedStory = ''):
             if type(sq[1]) == type(1):
                 emotionScore = sq[1]
             else:
-                ta[sq[1]] = emotionScore * e
-                dos = dos + 1
-            #If user does not exist insert
-            return json.dumps(ta)
+                if(sq[1] not in notP):
+                    ta[sq[1]] = emotionScore * e
+                    dos = dos + 1
+    #If user does not exist insert
+    return json.dumps(ta)
             #If user does exist then update score
                 
-#evalStories()
+j = evalStories()
+print(j)
     #print(u,indices,s.what)
     #ToDo: Add Fuzzy lookup to find the agents in the sentence
     #Bind the emotion score to the agents
