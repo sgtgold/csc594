@@ -11,7 +11,7 @@ class SocketListener(socketserver.BaseRequestHandler):
         data = self.request[0].strip()
         #Which socket we are listening on and will respond on
         socket = self.request[1]
-        ev = EIJ.evalStories(data)
+        ev = EIJ.loadStoriesFromSocket(data)
         
         #Respond
         socket.sendto(bytes(ev,"utf-8"), self.client_address)

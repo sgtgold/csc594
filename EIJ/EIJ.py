@@ -1,7 +1,6 @@
 import queue 
 import Data
 import json
-
 #Comma separated list to parse the input for agents who are present
 #Emotion Words are assigned to the closest agents, even if not present 
 #(Not Present = not listed in who variable)
@@ -38,12 +37,15 @@ import json
 
 def evalStories(passedStory = ''):      
     stories = []
+    #Load pre-written stories
     if len(passedStory) == 0:
         stories = Data.loadStories()
+    #Load story that is passed in via the Socket
     else:
         data = json.loads(passedStory.decode("utf-8"))
         s = data
         stories.append(Data.Story(who=s['who'],date=s['date'],time=s['time'],what=s['what']))
+    allScores = {}
     for s in sorted(stories,key=lambda x: x.date):
         q = []
         #Each unique date is a set of t
@@ -52,6 +54,7 @@ def evalStories(passedStory = ''):
         notP = []
         pres = []
         for p in s.who.split(','):    
+            #People in brackets are not present but still need to be there for correct assignment
             if p[0] == '[':
                 notP.append(p.replace('[','').replace(']',''))
             else:
@@ -59,33 +62,43 @@ def evalStories(passedStory = ''):
         all = pres + notP
         preScore = []
         for u in all:
+            #Find instances of all users
+            #ToDo: Add Fuzzy Lookups
             indicies = [i for i, x in enumerate(s.what.split(' ')) if x.replace("'s",'') == u]
             if len(indicies) > 0:
                 for i in indicies:
                     q.append((i,u))
+            #Find instances of all emotional words
+            #ToDo: Add Fuzzy Lookups
         for e in emoList:
             for w in e.words:
                 indices = [i for i, x in enumerate(s.what.split(' ')) if x == w]
                 if len(indices) > 0:
-                    q.append((i,e.score))            
+                    q.append((i,e.score))         
+        #Sort the list of words and users by index
         sortedQ = sorted(q,key=lambda x: x[0],reverse=True)
         #dos = degrees of separation
         dos = 0
-        ta = {}
         emotionScore = 0
+        #Loop through the storted list and assign scores
         for sq in sortedQ:
+            #Initialize to zero
             #This means it is an agent
             e = 1 / (dos + 1)**2
             if type(sq[1]) == type(1):
                 emotionScore = sq[1]
             else:
                 if(sq[1] not in notP):
-                    ta[sq[1]] = emotionScore * e
+                    allScores.setdefault(sq[1], []).append(emotionScore * e)
                     dos = dos + 1
-    #If user does not exist insert
-    return json.dumps(ta)
-            #If user does exist then update score
-                
+    #Find Max Len
+    maxKey=max(allScores, key=lambda k: len(allScores[k]))
+    maxN = len(allScores[maxKey])
+    for key,val in allScores.items():
+        print("{} = {}".format(key, val))
+        while len(val) < maxN:
+            allScores[key].append(0.0)
+    return json.dumps(allScores)
 j = evalStories()
 print(j)
     #print(u,indices,s.what)

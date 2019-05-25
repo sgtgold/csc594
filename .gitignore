@@ -65,3 +65,11 @@ EIJ/facts.json
 *.pyc
 EIJ/__pycache__/Data.cpython-37.pyc
 *.pyc
+*.zip
+*.ppt
+*.pptx
+*.txt
+*.zip
+*.pyc
+*.zip
+EIJ/AISocketLog.txt
