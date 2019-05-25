@@ -1,2 +1,0 @@
-Client Sent: bob went out breakfast with carol
-Server Sent Back: {"carol": 0.0}
