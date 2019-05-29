@@ -84,7 +84,7 @@ def evalStories(passedStory = ''):
         for sq in sortedQ:
             #Initialize to zero
             #This means it is an agent
-            e = 1 / (dos + 1)**2
+            e = 1 / (2**dos)
             if type(sq[1]) == type(1):
                 emotionScore = sq[1]
             else:
