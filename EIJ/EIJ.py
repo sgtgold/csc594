@@ -1,6 +1,8 @@
 import queue 
 import Data
 import json
+import numpy as np
+from numpy.linalg import inv
 #Comma separated list to parse the input for agents who are present
 #Emotion Words are assigned to the closest agents, even if not present 
 #(Not Present = not listed in who variable)
@@ -98,6 +100,59 @@ def evalStories(passedStory = ''):
         print("{} = {}".format(key, val))
         while len(val) < maxN:
             allScores[key].append(0.0)
+    arrays = []
+    for key,val in allScores.items():
+        arrays.append(np.array(allScores[key]))
+        
+    A = np.asmatrix(arrays)
+    B = (A * A.transpose())
+    
+    (B_x,B_y) = B.shape
+    #Array of Magnitudes
+    aMag = []
+    #This loop does the equation below (example with row size of 3)
+    #magnitude = np.sqrt(row[0]**2 +  row[1]**2 + row[2]**2)
+    #For each Row
+    for i in range(0,B_x):
+        #Reset the magnitude
+        m = 0
+        #Set the Row
+        row = np.array(B[i,:])[0]
+        for j in range(0,B_y):
+            #Get the individual scores to be summed and squared rooted
+            m += row[j]**2
+        aMag.append(np.sqrt(m))
+        #print(aMag)
+    bMag = np.array(aMag).reshape(B_x,1)
+    one_col = np.ones((B_x,1))
+    C = np.hstack((B,one_col,bMag))
+    D = C * C.transpose()
+    
+    subM = []
+    (C_x,C_y) = C.shape
+    #Element wise Row Subtraction all but the last row
+    #for i in range(0,C_x - 1):
+     #   row = np.array(C[i,:])[0]
+      #  row_1 = np.array(C[i+1,:])[0]
+      #  subArray = []
+      #  for j in range(0,len(row)):
+      #      subArray.append(row[j] - row_1[j])
+        # Check that all non-i positions (except for last column are 0
+      #  subM.append(subArray)
+        
+        #subM_1 = np.divide(subM[0],subM[0][0])    
+        
+        #Handle the top row minus the last row
+    #row = np.array(C[0,:])[0]
+    #row_1 = np.array(C[(C_x-1),:])[0]
+    #subArray = []
+    #for j in range(0,len(row)):
+     #   subArray.append(row[j] -row_1[j])
+    #subM.append(subArray)
+
+    #for i in range(0,len(C)):
+    #    d_array.append(np.array(C[i])[0])
+    #D = np.asmatrix(d_array)
     return json.dumps(allScores)
 j = evalStories()
 print(j)
