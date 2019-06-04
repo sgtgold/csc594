@@ -48,6 +48,7 @@ def evalStories(passedStory = ''):
         s = data
         stories.append(Data.Story(who=s['who'],date=s['date'],time=s['time'],what=s['what']))
     allScores = {}
+    directScores = []
     for s in sorted(stories,key=lambda x: x.date):
         q = []
         #Each unique date is a set of t
@@ -57,7 +58,7 @@ def evalStories(passedStory = ''):
         pres = []
         for p in s.who.split(','):    
             #People in brackets are not present but still need to be there for correct assignment
-            if p[0] == '[':
+            if str.strip(p)[0] == '[':
                 notP.append(p.replace('[','').replace(']',''))
             else:
                 pres.append(p)
@@ -76,12 +77,14 @@ def evalStories(passedStory = ''):
             for w in e.words:
                 indices = [i for i, x in enumerate(s.what.split(' ')) if x == w]
                 if len(indices) > 0:
-                    q.append((i,e.score))         
+                    q.append((i,e.score,e.name))         
         #Sort the list of words and users by index
         sortedQ = sorted(q,key=lambda x: x[0],reverse=True)
         #dos = degrees of separation
         dos = 0
         emotionScore = 0
+        emotionWord = ''
+        emotionCat = ''
         #Loop through the storted list and assign scores
         for sq in sortedQ:
             #Initialize to zero
@@ -89,22 +92,32 @@ def evalStories(passedStory = ''):
             e = 1 / (2**dos)
             if type(sq[1]) == type(1):
                 emotionScore = sq[1]
+                emotionIndex = sq[0]
+                emotionCat = sq[2]
             else:
                 if(sq[1] not in notP):
+                    if abs(e * emotionScore) == abs(1):
+                        directScores.append((sq[1],emotionScore,emotionIndex,emotionCat))
                     allScores.setdefault(sq[1], []).append(emotionScore * e)
                     dos = dos + 1
     #Find Max Len
+    print(directScores)
     maxKey=max(allScores, key=lambda k: len(allScores[k]))
     maxN = len(allScores[maxKey])
+    agents = []
     for key,val in allScores.items():
-        print("{} = {}".format(key, val))
+        #print("{} = {}".format(key, val))
         while len(val) < maxN:
             allScores[key].append(0.0)
+        agents.append(key) 
     arrays = []
     for key,val in allScores.items():
         arrays.append(np.array(allScores[key]))
-        
     A = np.asmatrix(arrays)
+    agentDir = []  
+    for key,val in allScores.items():
+        agentDir.append([key,np.sum(val)])
+    print(agentDir)
     B = (A * A.transpose())
     
     (B_x,B_y) = B.shape
@@ -123,13 +136,19 @@ def evalStories(passedStory = ''):
             m += row[j]**2
         aMag.append(np.sqrt(m))
         #print(aMag)
-    bMag = np.array(aMag).reshape(B_x,1)
-    one_col = np.ones((B_x,1))
-    C = np.hstack((B,one_col,bMag))
-    D = C * C.transpose()
-    
-    subM = []
+    mags = np.array(aMag).reshape(B_x,1)
+    C = np.hstack((agentDir,mags))
     (C_x,C_y) = C.shape
+    for i in range(0,C_x - 1):
+        row = np.array(C[i,:])[0]
+        
+    print(C)
+    #one_col = np.ones((B_x,1))
+    #C = np.hstack((B,one_col,bMag))
+    #D = C * C.transpose()
+    
+    #subM = []
+    #(C_x,C_y) = C.shape
     #Element wise Row Subtraction all but the last row
     #for i in range(0,C_x - 1):
      #   row = np.array(C[i,:])[0]
