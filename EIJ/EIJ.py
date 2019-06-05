@@ -3,40 +3,41 @@ import Data
 import json
 import numpy as np
 from numpy.linalg import inv
+def interpretMagnitude(magnitude):
+    modifier = ''
+    if magnitude < .49:
+        modifier = 'mildly'
+    if magnitude >= .5 and magnitude < 1.0 :
+        modifier = ''
+    if magnitude >= 1:
+        modifier = 'very'
+    return modifier
+
+def outputPrimeEmotion(agent,score,emotionCategory,rawStory,startIndex,endIndex,isPresent,magnitude):
+    modifier = interpretMagnitude(float(magnitude))    
+    print('\nThe Story is "' + rawStory + '"')
+    pText = ''
+    if(isPresent == 0):
+        pText = ' and it was being discussed, even though they were not present'
+    if score <= 0:
+        print(("{} had a {} negative emotion, they were {}"+pText).format(agent,modifier,emotionCategory))
+    else:    
+        print(("{} had a {} positive emotion, they were {}"+pText).format(agent,modifier,emotionCategory))
+    storyArray = rawStory.split(' ')
+    sep = ' '
+    print("I believe this because of this story '{}' in this Journal".format(sep.join(storyArray[startIndex:endIndex+2]))) 
+
+def outputEmpathy(primeAgent,friend,score,emotionCategory,magnitude):
+    modifier = interpretMagnitude(float(magnitude))
+    if score <= 0.0:
+        print("{} heard that {} was {}, they were {} sad because they were friends ".format(friend,primeAgent,emotionCategory,modifier))
+    else:
+         print("{} heard that {} was {}, they were {} glad because they were friends ".format(friend,primeAgent,emotionCategory,modifier))
+   
 #Comma separated list to parse the input for agents who are present
 #Emotion Words are assigned to the closest agents, even if not present 
 #(Not Present = not listed in who variable)
-#Degrees of separation are implied by position in sentance and assigned thusly
-#For instance, take the following stories
-#t0{
-#who:Bob,Carol
-#date:5/12/2019
-#time: 0700
-#What:Bob went out breakfast with Carol
-#Score: 0 - No emotion words found} 
-#t1{
-#who:Carol,Doctor
-#date:5/12/2019
-#time:1200
-#What:Carol had a Doctor's appointment - use fuzzy lookup to find doctor 
-#Score: 0 - No emotion words found}
-#t2{
-#who:Carol,Doctor,[Mother]
-#date:5/12/2019
-#time:1205
-#What:Carol's Doctor was upset because his mother passes away 
-#Score: [-1 - for doctor (closest)], [-.5 Carol 1 degree of separation and loss for empathy]}
-#t3{
-#who:Carol,Bob,[Doctor],[Mother]
-#date:5/12/2019
-#time:1900
-#What:Bob and Carol have dinner and discuss the Doctor's Mom's Death}
-#Score: [-.25 for Bob],[-.5 for Carol] (only 2 present)
-#Note about the score, We only assign emotions to those involved directly in the story block, 
-#Doctor and Mom will be mentioned but no present notated by brackets to get the degree of separation correct
-#Simplifying assumption: Emotion words will be assigned to the closet agent 
-#and relationships will be determined by sentence order
-
+#Degrees of separation are implied by position in sentance relative to the prime emotion haver
 def evalStories(passedStory = ''):      
     stories = []
     #Load pre-written stories
@@ -48,8 +49,11 @@ def evalStories(passedStory = ''):
         s = data
         stories.append(Data.Story(who=s['who'],date=s['date'],time=s['time'],what=s['what']))
     allScores = {}
-    directScores = []
+    storyId = -1
+    primeScores = []
+    empathyScores = []
     for s in sorted(stories,key=lambda x: x.date):
+        storyId += 1
         q = []
         #Each unique date is a set of t
         #order by date, not sure if time is really important
@@ -81,10 +85,11 @@ def evalStories(passedStory = ''):
         #Sort the list of words and users by index
         sortedQ = sorted(q,key=lambda x: x[0],reverse=True)
         #dos = degrees of separation
-        dos = 0
+        dos = -1
         emotionScore = 0
         emotionWord = ''
         emotionCat = ''
+        primeAgent = ''
         #Loop through the storted list and assign scores
         for sq in sortedQ:
             #Initialize to zero
@@ -95,13 +100,23 @@ def evalStories(passedStory = ''):
                 emotionIndex = sq[0]
                 emotionCat = sq[2]
             else:
-                if(sq[1] not in notP):
-                    if abs(e * emotionScore) == abs(1):
-                        directScores.append((sq[1],emotionScore,emotionIndex,emotionCat))
+                dos = dos + 1
+                present = 1
+                if(sq[1] in notP):
+                    present = 0
+                    allScores.setdefault(sq[1], []).append(0)
+                if abs(e * emotionScore) == abs(1):
+                        agentIndex = sq[0]
+                        primeAgent = sq[1]
+                        primeScores.append((primeAgent,emotionScore,emotionCat,s.what,agentIndex,emotionIndex,present,storyId))
+                if(present == 1):
                     allScores.setdefault(sq[1], []).append(emotionScore * e)
-                    dos = dos + 1
+                    friend = sq[1]
+                    if primeAgent != friend:
+                        empathyScores.append((primeAgent,friend,(emotionScore * e),emotionCat,storyId))
+    #print(allScores)                
     #Find Max Len
-    print(directScores)
+    #print(directScores)
     maxKey=max(allScores, key=lambda k: len(allScores[k]))
     maxN = len(allScores[maxKey])
     agents = []
@@ -117,7 +132,7 @@ def evalStories(passedStory = ''):
     agentDir = []  
     for key,val in allScores.items():
         agentDir.append([key,np.sum(val)])
-    print(agentDir)
+    #print(agentDir)
     B = (A * A.transpose())
     
     (B_x,B_y) = B.shape
@@ -135,14 +150,33 @@ def evalStories(passedStory = ''):
             #Get the individual scores to be summed and squared rooted
             m += row[j]**2
         aMag.append(np.sqrt(m))
-        #print(aMag)
     mags = np.array(aMag).reshape(B_x,1)
     C = np.hstack((agentDir,mags))
     (C_x,C_y) = C.shape
-    for i in range(0,C_x - 1):
-        row = np.array(C[i,:])[0]
-        
-    print(C)
+    rows = []
+    for s in range(0,storyId + 1):
+        for p in primeScores:      
+            for i in range(0,C_x):  
+            #Perform our LHM
+                if (p[0] == C[i][0] and p[-1] == s):
+                    #(agent,score,emotionCategory,rawStory,startIndex,endIndex,isPresent,magnitude)
+                    outputPrimeEmotion(p[0],p[1],p[2],p[3],p[4],p[5],p[6],C[i][2])
+        for ep in empathyScores:
+            for i in range(0,C_x): 
+        #(primeAgent,friend,score,emotionCategory,magnitude):
+                if (ep[1] == C[i][0] and ep[1] != p[0] and ep[2] != 0.0 and ep[-1] == s):        
+                        outputEmpathy(ep[0],ep[1],ep[2],ep[3],C[i][2])
+            
+            #rows.append(np.array(C[i][2]))
+        #print(rows)
+
+
+
+
+
+
+#Extra Code
+    #print(C)
     #one_col = np.ones((B_x,1))
     #C = np.hstack((B,one_col,bMag))
     #D = C * C.transpose()
@@ -174,7 +208,7 @@ def evalStories(passedStory = ''):
     #D = np.asmatrix(d_array)
     return json.dumps(allScores)
 j = evalStories()
-print(j)
+#print(j)
     #print(u,indices,s.what)
     #ToDo: Add Fuzzy lookup to find the agents in the sentence
     #Bind the emotion score to the agents

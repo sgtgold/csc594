@@ -23,10 +23,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="client.py" />
-    <Compile Include="EIJ.py" />
     <Compile Include="Data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EIJ.py" />
     <Compile Include="server.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
