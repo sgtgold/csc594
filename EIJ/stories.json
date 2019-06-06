@@ -13,13 +13,13 @@
       "date": "5/12/2019"
     },
     {
-      "who": "carol,doctor,[mother]",
+      "who": "carol,doctor",
       "what": "carol had a doctor's appointment, where the doctor told her that his mother died",
       "time": "1205",
       "date": "5/12/2019"
     },
     {
-      "who": "carol,bob,[doctor],[mother]",
+      "who": "carol,bob,[doctor]",
       "what": "bob and carol have dinner and discuss the doctor's mother's death",
       "time": "1900",
       "date": "5/12/2019"
@@ -29,6 +29,18 @@
       "what": "frodo and sam were elated when they finally destroyed the ring",
       "time": "2000",
       "date": "1/1/1000"
+    },
+    {
+      "who": "jake",
+      "what": "jake was elated because it was his birthday",
+      "time": "2000",
+      "date": "1/1/1999"
+    },
+    {
+      "who": "jake",
+      "what": "jake was uncomfortable at the party",
+      "time": "2100",
+      "date": "10/1/1999"
     }
   ]
 }

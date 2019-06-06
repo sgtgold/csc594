@@ -5,16 +5,18 @@ import numpy as np
 from numpy.linalg import inv
 def interpretMagnitude(magnitude):
     modifier = ''
-    if magnitude < .49:
+    if abs(magnitude) < .49:
         modifier = 'mildly'
-    if magnitude >= .5 and magnitude < 1.0 :
+    if abs(magnitude) >= .5 and abs(magnitude) < 1.0 :
         modifier = ''
-    if magnitude >= 1:
+    if abs(magnitude) >= 1:
         modifier = 'very'
     return modifier
 def outputPrimeEmotion(agent,score,emotionCategory,rawStory,startIndex,endIndex,isPresent,magnitude):
-    modifier = interpretMagnitude(float(magnitude))    
-    endIndex = endIndex + 1
+    if(isPresent == 1):
+        modifier = interpretMagnitude(float(magnitude))
+    else:
+        modifier = ''
     rv = ''
     rv += '\nThe Story is ' + rawStory
     pText = ''
@@ -26,14 +28,14 @@ def outputPrimeEmotion(agent,score,emotionCategory,rawStory,startIndex,endIndex,
         rv += ("\n{} had a {} positive emotion, they were {}"+pText).format(agent,modifier,emotionCategory)
     storyArray = rawStory.split(' ')
     sep = ' '
-    rv += "\nI believe this because of this story '{}' in this Journal".format(sep.join(storyArray[startIndex:endIndex+2]))
+    rv += "\nI believe this because of this story '{}' in this Journal".format(sep.join(storyArray[startIndex:endIndex]))
     return rv
 def outputEmpathy(primeAgent,friend,score,emotionCategory,magnitude):
     modifier = interpretMagnitude(float(magnitude))
     if score <= 0.0:
-        return "{} heard that {} was {}, they were {} sad because they were friends ".format(friend,primeAgent,emotionCategory,modifier)
+        return "\n{} heard that {} was {}, they were {} sad because they were friends ".format(friend,primeAgent,emotionCategory,modifier)
     else:
-        return "{} heard that {} was {}, they were {} glad because they were friends ".format(friend,primeAgent,emotionCategory,modifier)
+        return "\n{} heard that {} was {}, they were {} glad because they were friends ".format(friend,primeAgent,emotionCategory,modifier)
    
 #Comma separated list to parse the input for agents who are present
 #Emotion Words are assigned to the closest agents, even if not present 
@@ -61,28 +63,33 @@ def evalStories(passedStory = ''):
         emoList = Data.loadEmotionWordList()
         notP = []
         pres = []
-        for p in s.who.split(','):    
-            #People in brackets are not present but still need to be there for correct assignment
-            if str.strip(p)[0] == '[':
-                notP.append(p.replace('[','').replace(']',''))
-            else:
-                pres.append(p)
+        if ',' in s.who:
+            for p in s.who.split(','):    
+                #People in brackets are not present but still need to be there for correct assignment
+                if str.strip(p)[0] == '[':
+                    notP.append(p.replace('[','').replace(']',''))
+                else:
+                    pres.append(p)
+        #Only one agent is present
+        else:
+            pres.append(s.who)
         all = pres + notP
         preScore = []
         for u in all:
             #Find instances of all users
             #Using Fuzzy Lookups with a high enough threshold to get around puncation and small spelling mistakes
-            indicies = [i for i, x in enumerate(s.what.split(' ')) if Data.levenshtein_ratio_and_distance(x,u) >= 0.85]
+            indicies = [i for i, x in enumerate(s.what.split(' ')) if Data.levenshtein_ratio_and_distance(x.replace("'s",''),u) >= 0.95]
             if len(indicies) > 0:
                 for i in indicies:
-                    q.append((i,u))
+                    if (i,u) not in q:
+                        q.append((i,u))
             #Find instances of all emotional words
         for e in emoList:
             for w in e.words:
                 #Using Fuzzy Lookups with a high enough threshold to get around puncation and small spelling mistakes
-                indices = [i for i, x in enumerate(s.what.split(' ')) if Data.levenshtein_ratio_and_distance(x,w) >= 0.85]
+                indices = [i for i, y in enumerate(s.what.split(' ')) if Data.levenshtein_ratio_and_distance(y,w) >= 0.95]
                 if len(indices) > 0:
-                    q.append((i,e.score,e.name))         
+                    q.append((indices[0],e.score,e.name))         
         #Sort the list of words and users by index
         sortedQ = sorted(q,key=lambda x: x[0],reverse=True)
         #dos = degrees of separation
@@ -94,22 +101,24 @@ def evalStories(passedStory = ''):
         for sq in sortedQ:
             #Initialize to zero
             #This means it is an agent
-            e = 1 / (2**dos)
             if type(sq[1]) == type(1):
+                print(sq)
                 emotionScore = sq[1]
                 emotionIndex = sq[0]
                 emotionCat = sq[2]
             else:
                 dos = dos + 1
                 present = 1
+                e = 1 / (2**dos)
                 if(sq[1] in notP):
                     present = 0
                     allScores.setdefault(sq[1], []).append(0)
                 #If there are no degrees of separation then they are the agent having the emotion
-                if abs(e * emotionScore) == abs(1):
+                if dos == 0 and emotionCat != '':
                         agentIndex = sq[0]
                         primeAgent = sq[1]
-                        primeScores.append((primeAgent,emotionScore,emotionCat,s.what,agentIndex,emotionIndex,present,storyId))
+                        #print(emotionScore)
+                        primeScores.append((primeAgent,(emotionScore * e),emotionCat,s.what,agentIndex,emotionIndex+1,present,storyId))
                 #Empathizers are agents preset, and hearing about another agent's emotion
                 if(present == 1):
                     allScores.setdefault(sq[1], []).append(emotionScore * e)
@@ -164,7 +173,8 @@ def evalStories(passedStory = ''):
             #Perform our LHM
                 if (p[0] == C[i][0] and p[-1] == s):
                     #(agent,score,emotionCategory,rawStory,startIndex,endIndex,isPresent,magnitude)
-                    output += outputPrimeEmotion(p[0],p[1],p[2],p[3],p[4],p[5],p[6],C[i][2])
+                    print(C)
+                    output += outputPrimeEmotion(p[0],p[1],p[2],p[3],p[4],p[5],p[6],float(C[i][2]) * 2)
                     totalPerStory += 1
         for ep in empathyScores:
             for i in range(0,C_x): 
@@ -176,6 +186,22 @@ def evalStories(passedStory = ''):
         #print(rows)
         if(totalPerStory == 0):
             output = '\nNo emotions found in the story'
-        
+    #print(output)
     return output
-#print(evalStories())
+print('Hello and welcome to the EIJ Demo')
+print('Pass me a story to get started')
+#Debug Code
+#def dict_from_class(cls):
+#    return dict(
+#        (key, value)
+#        for (key, value) in cls.__dict__.items()
+#        )
+#d = {}
+#d[0] = Data.Story(
+#         who = "jake",
+#          what =  "jake was elated because it was his birthday",
+#          time =  "2000",
+#          date =  "1/1/1999")
+#
+#
+#print(evalStories(bytes(json.dumps(dict_from_class(d[0])), "utf-8")))

@@ -24,17 +24,17 @@ for i in range(0,len(data)):
     print('Choice ',i,':',data[i].what)
 x = ''
 while x != 'q':
-    x = input('Type the ID of a story to evaluate (or q to quit):')
-    file1 = open("AISocketLog.txt","a+") 
-    file1.writelines('Client Sent: '+ data[int(x)].what+'\n') 
-    file1.close() #to change file access modes 
+    x = input('\nType the ID of a story to evaluate (or q to quit):')
     if x!= 'q':
-    #Send the byte array of the story to the server which is connected to EIJ
-    #And we have to convert our class Story to a dictionary so it can convert to JSON
-        sock.sendto(bytes(json.dumps(dict_from_class(data[int(x)])), "utf-8"), (HOST, PORT))
+        file1 = open("AISocketLog.txt","a+") 
+        file1.writelines('Client Sent: '+ data[int(x)].what+'\n') 
+        file1.close() #to change file access modes 
+        #Send the byte array of the story to the server which is connected to EIJ
+        #And we have to convert our class Story to a dictionary so it can convert to JSON
+        sock.sendto(json.dumps(dict_from_class(data[int(x)])).encode("utf-8"), (HOST, PORT))
         #Get a response
-        received = str(sock.recv(1024), "utf-8")
-        print(received)
+        received = str(sock.recv(1024),"utf-8")
+        print('\n'+received)
         file1 = open("AISocketLog.txt","a+") 
         file1.writelines('Server Sent Back: '+received+'\n') 
         file1.close() #to change file access modes 
