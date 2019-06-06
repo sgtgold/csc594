@@ -11,7 +11,9 @@ class SocketListener(socketserver.BaseRequestHandler):
         data = self.request[0].strip()
         #Which socket we are listening on and will respond on
         socket = self.request[1]
-        ev = EIJ.loadStoriesFromSocket(data)
+        print('Hello and welcome to the EIJ Demo')
+        print('\n Pass me a story to get started')
+        ev = EIJ.evalStories(data)
         
         #Respond
         socket.sendto(bytes(ev,"utf-8"), self.client_address)

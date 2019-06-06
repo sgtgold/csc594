@@ -2,7 +2,7 @@ import json
 import os
 import numpy as np
 #Pulled from https://www.datacamp.com/community/tutorials/fuzzy-string-python
-def levenshtein_ratio_and_distance(s, t, ratio_calc = False):
+def levenshtein_ratio_and_distance(s, t, ratio_calc = True):
     """ levenshtein_ratio_and_distance:
         Calculates levenshtein distance between two strings.
         If ratio_calc = True, the function computes the

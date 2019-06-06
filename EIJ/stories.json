@@ -23,6 +23,12 @@
       "what": "bob and carol have dinner and discuss the doctor's mother's death",
       "time": "1900",
       "date": "5/12/2019"
+    },
+    {
+      "who": "frodo,sam",
+      "what": "frodo and sam were elated when they finally destroyed the ring",
+      "time": "2000",
+      "date": "1/1/1000"
     }
   ]
 }
